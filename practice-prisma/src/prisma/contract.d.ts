@@ -18,7 +18,7 @@ import type {
 } from '@prisma/orm-postgres/contract-types';
 
 export type StorageHash =
-  StorageHashBase<'229becdb07b03e8ce917d026345ebffd5f7f2fb56d11c4791e5ff50bfacb58b5'>;
+  StorageHashBase<'aca8f267b67276d3b35b460e917dd7f4ab0fc6bdabd0e429a81fa19e4dd53303'>;
 export type ExecutionHash =
   ExecutionHashBase<'0ff7f5c55037616d53a67c7c581c1178658b41c7a674a85dd59fc3b8f9dd8a49'>;
 export type ProfileHash =
@@ -325,7 +325,6 @@ export namespace Models {
     createdAt: FieldOutputTypes['public']['User']['createdAt'];
     email: FieldOutputTypes['public']['User']['email'];
     id: FieldOutputTypes['public']['User']['id'];
-    name: FieldOutputTypes['public']['User']['name'];
     nameB: FieldOutputTypes['public']['User']['nameB'];
     updatedAt: FieldOutputTypes['public']['User']['updatedAt'];
     username: FieldOutputTypes['public']['User']['username'];
@@ -455,12 +454,6 @@ type ContractBase = Omit<
                     readonly kind: 'function';
                     readonly expression: 'autoincrement()';
                   };
-                  readonly many: false;
-                };
-                readonly name: {
-                  readonly dataType: 'pg/text';
-                  readonly codecId: 'pg/text@1';
-                  readonly nullable: true;
                   readonly many: false;
                 };
                 readonly nameB: {
@@ -670,10 +663,6 @@ type ContractBase = Omit<
                 readonly nullable: false;
                 readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/int4@1' };
               };
-              readonly name: {
-                readonly nullable: true;
-                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/text@1' };
-              };
               readonly nameB: {
                 readonly nullable: true;
                 readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/text@1' };
@@ -708,7 +697,6 @@ type ContractBase = Omit<
                 readonly createdAt: { readonly column: 'createdAt' };
                 readonly email: { readonly column: 'email' };
                 readonly id: { readonly column: 'id' };
-                readonly name: { readonly column: 'name' };
                 readonly nameB: { readonly column: 'nameB' };
                 readonly updatedAt: { readonly column: 'updatedAt' };
                 readonly username: { readonly column: 'username' };
