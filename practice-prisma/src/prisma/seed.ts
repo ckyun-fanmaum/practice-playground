@@ -1,9 +1,9 @@
 import { db } from "./db.ts";
 
 const users = [
-  { email: "alice@prisma.io", username: "alice", name: "Alice" },
-  { email: "bob@prisma.io", username: "bob", name: "Bob" },
-  { email: "carol@prisma.io", username: "carol", name: "Carol" },
+  { email: "alice@prisma.io", username: "alice", nameB: "Alice" },
+  { email: "bob@prisma.io", username: "bob", nameB: "Bob" },
+  { email: "carol@prisma.io", username: "carol", nameB: "Carol" },
 ];
 
 let pendingSeed: Promise<void> | undefined;
@@ -14,12 +14,10 @@ async function runSeed(): Promise<void> {
       create: {
         email: user.email,
         username: user.username,
-        name: user.name,
-        nameB: user.name,
+        nameB: user.nameB,
       },
       update: {
-        name: user.name,
-        nameB: user.name,
+        nameB: user.nameB,
       },
       conflictOn: { email: user.email },
     });

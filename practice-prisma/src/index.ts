@@ -1,6 +1,6 @@
 import { createServer } from "node:http";
 
-import { listUsers, findByEmail } from "./prisma/users";
+import { findByEmail } from "./prisma/users";
 
 const port = Number(process.env.PORT ?? 3000);
 
