@@ -1,9 +1,9 @@
 import { db } from "./db.ts";
 
 const users = [
-  { email: "alice@prisma.io", username: "alice", name: "Alice" },
-  { email: "bob@prisma.io", username: "bob", name: "Bob" },
-  { email: "carol@prisma.io", username: "carol", name: "Carol" },
+  { email: "alice@prisma.io", username: "alice", nameB: "Alice" },
+  { email: "bob@prisma.io", username: "bob", nameB: "Bob" },
+  { email: "carol@prisma.io", username: "carol", nameB: "Carol" },
 ];
 
 let pendingSeed: Promise<void> | undefined;
@@ -11,8 +11,14 @@ let pendingSeed: Promise<void> | undefined;
 async function runSeed(): Promise<void> {
   for (const user of users) {
     await db.orm.public.User.upsert({
-      create: user,
-      update: {},
+      create: {
+        email: user.email,
+        username: user.username,
+        nameB: user.nameB,
+      },
+      update: {
+        nameB: user.nameB,
+      },
       conflictOn: { email: user.email },
     });
   }

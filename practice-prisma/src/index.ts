@@ -1,12 +1,12 @@
 import { createServer } from "node:http";
 
-import { listUsers } from "./prisma/users";
+import { findByEmail } from "./prisma/users";
 
 const port = Number(process.env.PORT ?? 3000);
 
 createServer(async (_request, response) => {
   try {
-    const users = await listUsers();
+    const users = await findByEmail("bob@prisma.io");
     response.writeHead(200, { "content-type": "application/json" });
     response.end(JSON.stringify({ users }));
   } catch (error) {
