@@ -1,3 +1,4 @@
+import { CreatedAt } from "alchemy/Schema";
 import { db } from "./db.ts";
 import { seed } from "./seed.ts";
 
@@ -14,6 +15,26 @@ export async function listUsers(limit = 10) {
     name: user.name ?? null,
     createdAt: user.createdAt?.toISOString() ?? null,
   }));
+}
+
+export async function findByEmail(email: string) {
+  await seed();
+  const user = await db.orm.public.User
+    .select("id", "email", "username", "name", "createdAt")
+    .whereUnique({ email: email })
+    .first();
+
+  if (!user) {
+    return null;
+  }
+  
+  return {
+    id: String(user.id),
+    email: user.email,
+    username: user.username ?? null,
+    name: user.name ?? null,
+    createdAt: user.createdAt?.toISOString() ?? null,
+  };
 }
 
 export type StarterUser = Awaited<ReturnType<typeof listUsers>>[number];
