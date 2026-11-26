@@ -11,8 +11,16 @@ let pendingSeed: Promise<void> | undefined;
 async function runSeed(): Promise<void> {
   for (const user of users) {
     await db.orm.public.User.upsert({
-      create: user,
-      update: {},
+      create: {
+        email: user.email,
+        username: user.username,
+        name: user.name,
+        nameB: user.name,
+      },
+      update: {
+        name: user.name,
+        nameB: user.name,
+      },
       conflictOn: { email: user.email },
     });
   }
