@@ -18,7 +18,7 @@ export async function listUsers(limit = 10) {
 export async function findByEmail(email: string) {
   await seed();
   const user = await db.orm.public.User
-    .select("id", "email", "username", "name", "createdAt")
+    .select("id", "email", "username", "nameB", "createdAt")
     .whereUnique({ email: email })
     .first();
 
@@ -30,7 +30,7 @@ export async function findByEmail(email: string) {
     id: String(user.id),
     email: user.email,
     username: user.username ?? null,
-    name: user.name ?? null,
+    nameB: user.nameB ?? null,
     createdAt: user.createdAt?.toISOString() ?? null,
   };
 }
